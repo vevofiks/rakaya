@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ocean: #0B4D68;
+  --color-deep-sea: #072C3D;
+  --color-sand: #E8D7B9;
+  --color-sunset: #FF7A30;
+  
+  --font-display: var(--font-outfit), sans-serif;
+  --font-sans: var(--font-jakarta), sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #072C3D; /* Set Deep Sea as standard background for premium dark aesthetic */
+  --foreground: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: initial; /* Lenis handles smooth scrolling */
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #051F2B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0B4D68;
+  border-radius: 5px;
+  border: 2px solid #051F2B;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7A30;
+}
+
+/* Glassmorphism custom classes */
+.glass-panel {
+  background: rgba(7, 44, 61, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 215, 185, 0.1);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(7, 44, 61, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(232, 215, 185, 0.08);
+}
+
+/* Custom premium text stroke and text gradients */
+.text-gradient-sand {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8D7B9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sunset {
+  background: linear-gradient(135deg, #FF7A30 0%, #FFB074 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-ocean {
+  background: linear-gradient(135deg, #E8D7B9 0%, #0B4D68 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ThreeJS and canvas overlays */
+.canvas-container {
+  pointer-events: none;
+}
+
+/* Custom animations and scroll utils */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Water Ripple effect animation */
+@keyframes ripple {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  animation: ripple 4s infinite linear;
+}
+
+/* Grid Mask and Overlays */
+.grid-bg {
+  background-image: radial-gradient(rgba(232, 215, 185, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

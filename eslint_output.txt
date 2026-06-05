@@ -1,0 +1,37 @@
+
+/home/muhammedshibilin/nextjs/rakaaya/src/components/HeroBackgroundSequence.tsx
+  10:10  warning  'loaded' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  21:9   warning  'progressRef' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  37:7   error    Error: Cannot access variable before it is declared
+
+`drawFrame` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/home/muhammedshibilin/nextjs/rakaaya/src/components/HeroBackgroundSequence.tsx:37:7
+  35 |       windowSizeRef.current = size;
+  36 |       
+> 37 |       drawFrame();
+     |       ^^^^^^^^^ `drawFrame` accessed before it is declared
+  38 |     };
+  39 |     
+  40 |     handleResize();
+
+/home/muhammedshibilin/nextjs/rakaaya/src/components/HeroBackgroundSequence.tsx:164:3
+  162 |   }, [isMobile]);
+  163 |
+> 164 |   function drawFrame() {
+      |   ^^^^^^^^^^^^^^^^^^^^^^
+> 165 |     if (pendingDraw.current) return;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 166 |     pendingDraw.current = true;
+      …
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 258 |     });
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 259 |   };
+      | ^^^^ `drawFrame` is declared here
+  260 |
+  261 |   return (
+  262 |     <div className="absolute inset-0 w-full h-full overflow-hidden">  react-hooks/immutability
+
+✖ 3 problems (1 error, 2 warnings)
+
